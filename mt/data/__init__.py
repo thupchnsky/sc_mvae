@@ -44,5 +44,7 @@ def create_dataset(dataset_type: str, *args: Any, **kwargs: Any) -> VaeDataset:
         return Cifar100VaeDataset(*args, **kwargs)
     elif dataset_type == "sc":
         return SCVaeDataset(*args, **kwargs)
+    elif dataset_type == "scphere":
+        return SCPhereVaeDataset(*args, **kwargs)
     else:
         raise ValueError(f"Unknown dataset type: '{dataset_type}'.")
