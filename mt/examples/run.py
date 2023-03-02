@@ -20,6 +20,7 @@ import sys
 import json
 import torch
 import pandas as pd
+from scipy.io import mmread
 
 from ..data import create_dataset
 from ..mvae import utils
@@ -31,6 +32,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="M-VAE runner.")
     parser.add_argument("--device", type=str, default="cuda", help="Whether to use cuda or cpu.")
     parser.add_argument("--data", type=str, default="./data", help="Data directory.")
+    parser.add_argument("--label", type=str, default="./data", help="Label directory.")
     parser.add_argument("--batch_size", type=int, default=100, help="Batch size.")
     parser.add_argument("--learning_rate", type=float, default=1e-3, help="Learning rate.")
     parser.add_argument("--epochs", type=int, default=500, help="Number of epochs.")
@@ -105,6 +107,10 @@ def main() -> None:
         df = pd.read_csv(args.data)
         in_dim = df.shape[1] - 2
         dataset = create_dataset(args.dataset, args.batch_size, in_dim, args.data)
+    elif args.dataset == 'scphere':
+        arr = mmread(args.data).A
+        in_dim = arr.shape[0]
+        dataset = create_dataset(args.dataset, args.batch_size, in_dim, args.data, args.label)
     else:
         dataset = create_dataset(args.dataset, args.batch_size, args.data)
 
@@ -124,7 +130,7 @@ def main() -> None:
         args.chkpt_epoch = int(last_chkpt[1])
         print("Previous checkpoint path and stop epoch")
         print(chkpt_dir, "stopped at epoch", args.chkpt_epoch)
-    elif args.dataset == 'sc':
+    elif args.dataset in ['sc', 'scphere']:
         tmp_dataset_name = args.data.split('/')[-1]
         tmp_dataset_name = tmp_dataset_name.split('.')[0]
         chkpt_dir = f"./chkpt/vae-{args.dataset}-{tmp_dataset_name}-{model_name}-{cur_time}"
@@ -165,7 +171,7 @@ def main() -> None:
 
     # train the model and save checkpoint when device=cuda
     sc_flag = False
-    if args.dataset == 'sc':
+    if args.dataset in ['sc', 'scphere']:
         sc_flag = True
 
     if args.universal:
