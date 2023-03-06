@@ -15,7 +15,7 @@
 
 from typing import Any
 
-from .image_reconstruction import Cifar10VaeDataset, Cifar100VaeDataset, MnistVaeDataset, OmniglotVaeDataset, SCVaeDataset
+from .image_reconstruction import Cifar10VaeDataset, Cifar100VaeDataset, MnistVaeDataset, OmniglotVaeDataset, SCVaeDataset, SCPhereVaeDataset
 from .synthetic import BdpVaeDataset
 from .vae_dataset import VaeDataset
 
@@ -27,6 +27,7 @@ __all__ = [
     "OmniglotVaeDataset",
     "VaeDataset",
     "SCVaeDataset",
+    "SCPhereVaeDataset",
     "create_dataset",
 ]
 

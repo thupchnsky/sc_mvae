@@ -306,8 +306,7 @@ class SCExpressionDataset(Dataset):
         # read the label information
         with open(label_file, 'r') as fr:
             label_lines = fr.read().splitlines()
-        assert len(label_lines) == self.cell_features.shape[0],
-            f"data size {self.cell_features.shape[0]} and label size {len(label_lines)} does not match!"
+        assert len(label_lines) == self.cell_features.shape[0], f"data size {self.cell_features.shape[0]} and label size {len(label_lines)} does not match!"
         
         label_set = []
         self.cell_labels = []
@@ -340,7 +339,7 @@ class SCExpressionDataset(Dataset):
         if torch.is_tensor(idx):
             idx = idx.tolist()
 
-        gene_count_feature = self.cell_features[idx + self.offset, :].astype('float')
+        gene_count_feature = np.array(self.cell_features[idx + self.offset, :]).astype('float').reshape(-1, 1)
         label = self.cell_labels[idx + self.offset]
 
         if self.transform is not None:
