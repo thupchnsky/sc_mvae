@@ -241,6 +241,17 @@ def main() -> None:
                                                               likelihood_n=args.likelihood_n,
                                                               max_epochs=args.epochs,
                                                               sc_flag=sc_flag)
+            # also record the input args in stat_dict.json
+            test_results['batch_size'] = args.batch_size
+            test_results['lr'] = args.learning_rate
+            test_results['epochs'] = args.epochs
+            test_results['warmup'] = args.warmup
+            test_results['lookahead'] = args.lookahead
+            test_results['architecture'] = args.architecture
+            test_results['h_dim'] = args.h_dim
+            test_results['depth'] = args.depth
+            test_results['dropout'] = args.dropout
+            test_results['likelihood_n'] = args.likelihood_n
             # save statistics to args.chkpt_dir
             with open(os.path.join(chkpt_dir, 'stat_dict.json'), 'w') as fw:
                 json.dump(test_results, fw, indent=4)
