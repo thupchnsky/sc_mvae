@@ -1,6 +1,6 @@
 # Mixed-Curvature VAE for Single-Cell Data Embeddings
 
-This repository is adapted from [mvae](https://github.com/oskopek/mvae) to embed single-cell data into mixed-curvature spaces. The embedded data can be later on used for [Federated Learning applications](https://openreview.net/forum?id=umggDfMHha).
+This repository is adapted from [mvae](https://github.com/oskopek/mvae) to embed single-cell data into mixed-curvature spaces. The embedded data can be later on used for [Federated Learning applications](https://github.com/sauravpr/hyperbolic_federated_classification).
 
 ## Installation
 
@@ -12,7 +12,7 @@ Please see the shell files such as `run_sc.sh` for more details.
 
 ## Contact
 
-Please contact Chao Pan (chaopan2@illinois.edu) and Saurav Prakash (sauravp2@illinois.edu) if you have any question.
+Please contact Chao Pan (chaopan2@illinois.edu) and Saurav Prakash (sauravp2@illinois.edu) if you have any questions.
 
 ## Citation
 
@@ -20,13 +20,12 @@ Please consider citing our paper and the original mvae paper if you find our rep
 
 ```
 @article{
-anonymous2023federated,
+prakash2023federated,
 title={Federated Classification in Hyperbolic Spaces via Secure Aggregation of Convex Hulls},
-author={Anonymous},
-journal={Submitted to Transactions on Machine Learning Research},
+author={Prakash, Saurav and Sima, Jin and Pan, Chao and Chien, Eli and Milenkovic, Olgica},
+journal={arXiv preprint arXiv:2308.06895},
 year={2023},
-url={https://openreview.net/forum?id=umggDfMHha},
-note={Under review}
+url={https://arxiv.org/abs/2308.06895}
 }
 ```
 
